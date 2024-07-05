@@ -1,0 +1,12 @@
+:contract SelfSignOrgChart(std)
+
+:role root
+:role A(root)
+:role B(root)
+:role C
+
+root, self -> C
+root, self -> A
+root -> B
+
+:init root $root

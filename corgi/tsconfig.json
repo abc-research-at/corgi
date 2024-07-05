@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": true,
+    "alwaysStrict": true,
+    "paths": {
+      "@core/*": ["core/*"],
+      "@utils": ["utils/index.ts"],
+      "@utils/*": ["utils/*"]
+    },
+    "baseUrl": "./"
+  },
+  "exclude": ["node_modules/"]
+}

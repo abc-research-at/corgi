@@ -1,0 +1,29 @@
+:contract DynDisRuleOrgChart(dyn)
+:role root
+:role A(root)
+:role B(root)
+:role A1(A)
+:role A2(A)
+:role B1(B)
+:role B2(B)
+
+root -> A
+root -> B
+
+A -> A1
+A1(2), self -> A1
+
+!root -> A2
+!A -> A2
+!A1 -> A2
+
+B -> B1
+!B -> B1
+A(50%) -> B1
+
+root -> B2
+!B -> -B2
+A, A1 -> -B2 
+
+:init root $root
+:admin-rule root

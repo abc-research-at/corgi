@@ -1,0 +1,25 @@
+:contract DynRevocationOrgChart(dyn)
+
+:role root
+:role A(root)
+:role B(root)
+:role C(root)
+:role AA(A)
+:role AB(A)
+
+// Dummy rules for granting:
+root -> A
+root -> B
+root -> C
+root -> AA
+root -> AB
+
+// revoking
+root -> -A
+root -> -B
+root -> -C
+root, A(2) -> -AA
+root, A(2), B(2) -> -AB
+
+:init root $root
+:admin-rule root

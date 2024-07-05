@@ -1,0 +1,63 @@
+:contract DynDemoMatrixOrgChart(dyn)
+:role root 
+
+// Definitions for role CEO
+:role CEO
+
+CEO -> root
+CEO -> -root
+
+
+CEO, self -> CEO
+CEO -> -CEO
+
+// Definitions for role Chief Operating Officer (COO)
+:role COO(CEO)
+CEO, self -> COO
+
+// Definitions for role Chief Financial Officer (CFO)
+:role CFO(CEO,COO)
+CEO, COO, self -> CFO
+
+//Chief Human Resources Officer (CHRO)             
+:role CHRO(CEO,COO,CFO)
+CEO, COO, self -> CFO
+
+// Definitions for role Chief Product Officer(CPO)
+:role CPO(CEO,CEO,CFO,CHRO)
+CEO, COO, CFO, CHRO, self -> CPO
+
+// Definitions for role Chief Marketing Officer(CMO)
+:role CMO(CEO,CEO,CFO,CHRO)
+CEO, COO, CFO, CHRO, self -> CMO
+
+// Definitions for role General Managers(GM1-GM5)
+:role GM1(COO)
+:role GM2(COO)
+:role GM3(COO)
+:role GM4(COO)
+:role GM5(COO)
+
+// Definitions for role Product Managers(PM1-PM5)
+:role PM1(CPO)
+:role PM2(CPO)
+:role PM3(CPO)
+:role PM4(CPO)
+:role PM5(CPO)
+
+// Definitions for role Project Managers(PPM1-PPM5)
+:role PPM1(PM1)
+:role PPM2(PM2)
+:role PPM3(PM3)
+:role PPM4(PM4)
+:role PPM5(PM5)
+
+// Definitions for role Interns (IN1-IN5)
+:role IN1(PPM1, CHRO, CFO)
+:role IN2(PPM2, CPO, CFO)
+:role IN3(PPM3, CMO, CFO)
+:role IN4(PPM4, CEO, CFO)
+:role IN5(PPM5, CEO, CFO)
+IN1 -> IN5
+
+:init CEO $ceo1

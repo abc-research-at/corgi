@@ -1,0 +1,5 @@
+:contract EmptyOrgChart(dyn)
+
+:role admin
+:init admin $admin
+:admin-rule admin

@@ -1,0 +1,49 @@
+:contract DynDemoSmallOrgChart(dyn)
+
+// Role definitions
+:role root
+:role DSO(root)
+:role DIR(DSO)
+:role PL1(DIR)
+:role PL2(DIR)
+:role PE1(PL1)
+:role QE1(PL1)
+
+// Two DSOs can grant the role "DSO" (self-signed required)
+self, DSO(2) -> DSO
+
+// Two DSOs can revoke the role "DSO"
+DSO(2) -> -DSO
+
+// Two DSOs can grant the role "DIR" (self-signed required)
+DSO(2) -> DIR
+
+// Two DSOs can revoke the role "DIR"
+DSO(2) -> -DIR
+
+// Two DIRs can grant the role "PL1"
+DIR(2) -> PL1
+
+// Two DIRs can revoke the role "PL1"
+DIR(2) -> -PL1
+
+// Two DIRs can grant the role "PL2"
+DIR(2) -> PL2
+
+// Two DIRs can revoke the role "PL2"
+DIR(2) -> -PL2
+
+// A PL1 and a DIR can grant the role "PE1"
+PL1, DIR -> PE1
+
+// A PL1 and a DIR can revoke the role "PE1"
+PL1, DIR -> -PE1
+
+// A PL1 and two PE1s can grant the role "QE1"
+PL1, PE1(2) -> QE1
+
+// A PL1 and two PE1s can revoke the role "QE1"
+PL1, PE1(2) -> -QE1
+
+:init DSO $dso1
+:init DSO $dso2

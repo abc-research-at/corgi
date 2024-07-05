@@ -1,0 +1,17 @@
+// Basic functionality test
+:contract DynBasicOrgChart(dyn)
+
+:role A
+:role B(A)
+:role C(A)
+
+
+A -> A
+
+A -> B
+
+A, B -> C
+
+:init A $a1
+:init A $a2
+:admin-rule A

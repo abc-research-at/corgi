@@ -1,0 +1,17 @@
+:contract DynDemoDebugOrgChart(dyn)
+
+:role A
+:role B(A)
+:role C(A)
+
+A -> B
+A -> C
+A -> -B
+A -> -C
+
+B,C,A -> A
+B,C,A -> -A
+
+:admin-rule A
+
+:init A $a

@@ -1,0 +1,24 @@
+:contract DynSimpleRoleAddingOrgChart(dyn)
+
+:role A
+:role B
+:role C
+
+:role AA(A)
+:role AB(A)
+
+:role BA(B)
+:role BB(B)
+
+:role CA(C)
+:role CB(C)
+
+B, C -> A
+A, C -> B
+A, B -> C
+
+:admin-rule A, B, C
+
+:init A $a
+:init B $b
+:init C $c

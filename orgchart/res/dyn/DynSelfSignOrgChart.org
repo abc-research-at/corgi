@@ -1,0 +1,13 @@
+:contract DynSelfSignOrgChart(dyn)
+
+:role root
+:role A(root)
+:role B(root)
+:role C
+
+root, self -> C
+root, self -> A
+root -> B
+
+:init root $root
+:admin-rule root

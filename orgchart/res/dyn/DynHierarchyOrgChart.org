@@ -1,0 +1,65 @@
+// Testing inheritance of roles using the following structure:
+//
+//                            ┌──────┐                     ┌──────┐
+//                ┌───────────┤ root ├──────────┐          │ r-2  │
+//                │           └──┬───┘          │          └──┬───┘
+//             ┌──┴───┐       ┌──┴───┐       ┌──┴───┐      ┌──┴───┐
+//          ┌──┤  A   ├──┐    │  B   │       │  C   │      │  Z   │
+//          │  └──────┘  │    └──┬───┘       └──────┘      └──────┘
+//          │            │       │
+//       ┌──┴───┐    ┌───┴──┐ ┌──┴───┐                                   
+//    ┌──┤  AA  ├┐  ┌┤  AB  │ │  BA  │
+//    │  └──────┘|  |└──────┘ └──────┘
+// ┌──┴───┐    ┌─┴──┴─┐
+// │ AAA  │  ┌─┤  X   ├─┐
+// └──────┘  │ └──────┘ │
+//       ┌───┴──┐    ┌──┴───┐
+//       │  XA  │    │  XB  │
+//       └──────┘    └──────┘
+
+:contract DynHierarchyOrgChart(dyn)
+
+:role root
+:role A(root)
+:role B(root)
+:role C(root)
+:role AA(A)
+:role AB(A)
+:role BA(B)
+:role X(AA,AB)
+:role XA(X)
+:role XB(X)
+:role AAA(AA)
+:role root2
+:role Z(root2)
+
+
+// Dummy rules, making it easier to build up test cases
+root -> A
+root -> B
+root -> C
+root -> AA
+root -> AB
+root -> BA
+root -> X
+root -> XA
+root -> XB
+root -> AAA
+root -> root2
+root -> Z
+
+root -> -A
+root -> -B
+root -> -C
+root -> -AA
+root -> -AB
+root -> -BA
+root -> -X
+root -> -XA
+root -> -XB
+root -> -AAA
+root -> -root2
+root -> -Z
+
+:init root $root
+:admin-rule root

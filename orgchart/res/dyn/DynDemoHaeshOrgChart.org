@@ -1,0 +1,35 @@
+:contract DynDemoHaeshOrgChart(dyn)
+
+:role root // admin rule for updating the org-chart
+
+// the C-Level
+:role CEO
+:role CTO(CEO)
+:role CFO(CEO)
+:role COO(CEO)
+
+// technical area
+:role FE(CTO) // = Front End Employees
+:role BE(CTO) // = Back End Employees
+:role DE(CTO) // = Dev Op Employees
+
+// minimum role
+:role Employee(CEO, CTO, COO, FE, BE, DE)
+
+
+// granting- and revoking-rules
+CEO -> root
+CEO -> -root
+
+CEO, COO, self -> CTO
+CEO, COO, self -> CFO
+CEO, self -> COO
+
+CEO, COO -> -CTO
+CEO, COO -> -CFO
+CEO -> -COO
+
+
+:init CEO $ceo
+
+:admin-rule CEO(2), COO(3)

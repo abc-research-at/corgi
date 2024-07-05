@@ -1,0 +1,22 @@
+:contract DynStrictRuleOrgChart(dyn)
+
+:role root
+:role A(root)
+:role A1(A)
+:role A2(A)
+
+:role B(root)
+:role B1(B)
+:role B2(B)
+
+root -> A
+!root -> B // should have the same effect as nobody is above root
+
+!A, B -> A1
+!A1 -> A2
+
+!B, self -> B1
+!B, root, !B1 -> B2
+
+:init root $root
+:admin-rule root

@@ -1,0 +1,15 @@
+// Basic functionality test
+:contract BasicOrgChart(std)
+
+:role A
+:role B(A)
+:role C(A)
+
+A -> A
+
+A -> B
+
+A, B -> C
+
+:init A $a1
+:init A $a2

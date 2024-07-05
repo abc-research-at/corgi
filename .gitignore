@@ -1,0 +1,31 @@
+build/
+dist/
+node_modules/
+types/
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+.vscode/
+
+#Hardhat files
+cache
+artifacts
+
+
+node_modules
+.env
+coverage
+coverage.json
+typechain
+typechain-types
+
+#Hardhat files
+cache
+artifacts
+
+#Custom
+orgchart/test/playground.ts
+orgchart/contracts/generated

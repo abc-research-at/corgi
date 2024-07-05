@@ -1,0 +1,61 @@
+:contract DynDemoLargeOrgChart(dyn)
+
+:role root
+
+// Definitions for role AD
+:role AD(root)
+AD, self -> AD
+AD -> -AD
+
+// Definitions for role P
+:role P(AD)
+AD(2), self -> P
+AD -> -P
+
+// Definitions for role DoDD(P)
+:role DoDD(P)
+P, self -> DoDD
+P -> -DoDD
+
+// Definitions for role PP
+:role PP(DoDD)
+P, self -> PP
+P -> -PP
+
+// Definitions for role PP1
+:role PP1(PP)
+P, PP, self -> PP1
+P, PP -> -PP1
+
+// Definitions for role PP2
+:role PP2(PP)
+P, PP, self -> PP2
+P, PP -> -PP2
+
+// Definitions for role PP3
+:role PP3(PP)
+P, PP, self -> PP3
+P, PP -> -PP3
+
+// Definitions for role PP4
+:role PP4(PP)
+P, PP, self -> PP4
+P, PP -> -PP4
+
+// Definition for role Des
+:role Des(DoDD)
+DoDD(2), AD, self -> Des
+DoDD, AD-> -Des
+
+// Definition for role Q
+:role Q(AD)
+DoDD, AD, self -> Q
+DoDD, AD -> -Q
+
+// Definition for role QA
+:role QA(Q)
+DoDD, Q, self -> QA
+DoDD, Q -> -QA
+
+:init AD $ad1
+:init AD $ad2

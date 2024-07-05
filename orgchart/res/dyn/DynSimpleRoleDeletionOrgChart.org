@@ -1,0 +1,41 @@
+// test orgchart for role deletion
+:contract DynSimpleRoleDeletionOrgChart(dyn)
+
+:role root
+
+:role top
+:role A(top)
+:role B(top)
+:role A1(A)
+:role A2(A)
+:role B1(B)
+:role B2(B)
+:role A11(A1)
+:role A12(A1)
+:role A21(A2)
+:role A22(A2)
+:role B11(B1)
+:role B12(B1)
+:role B21(B2)
+:role B22(B2)
+
+
+// dummy rules
+root -> top
+root -> A
+root -> B
+root -> A1
+root -> A2
+root -> B1
+root -> B2
+root -> A11
+root -> A12
+root -> A21
+root -> A22
+root -> B11
+root -> B12
+root -> B21
+root -> B22
+
+:init root $root
+:admin-rule root

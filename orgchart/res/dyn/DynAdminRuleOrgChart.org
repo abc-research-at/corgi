@@ -1,0 +1,29 @@
+// Basic functionality test
+:contract DynAdminRuleOrgChart(dyn)
+
+:role root
+:role A(root)
+:role B(A)
+:role C(A)
+
+
+:role DEL
+
+A -> A
+
+A -> B
+
+A, B -> C
+
+:init root $root1
+:init root $root2
+:init A $a1
+:init A $a2
+:init A $a3
+:init B $b1
+:init B $b2
+
+:admin-rule root(2), A, B
+:admin-rule A(50%), B
+:admin-rule !A(50%), root
+:admin-rule !A, !B, !root

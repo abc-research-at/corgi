@@ -1,0 +1,145 @@
+// non-grantable role
+:contract DynLargeOrgChart(dyn)
+:role root
+
+// debug rules
+root -> A
+root -> B
+root -> C
+
+:role A(root)
+A(2) -> -A
+
+:role B(root)
+A, B -> -B
+
+:role C(root)
+A, C -> -C
+
+// role with a ridiculously large grant role
+:role dummy(A,B,C)
+A(3), B, C, A1, A2, A3, self -> dummy
+
+// sub-area of "A"
+:role A1(A)
+A(2), self -> A1
+A(2) -> -A1
+
+:role A2(A)
+A, A1, self -> A2
+A, A1 -> -A2
+
+:role A3(A)
+A, self -> A3
+A(2) -> -A3
+
+:role A4(A)
+A, self -> A4
+A(2) -> -A4
+
+// sub-area of "B"
+:role B1(B)
+B -> B1
+B -> -B1
+
+:role B2(B)
+B -> B2
+B -> -B2
+
+:role B3(B)
+B -> B3
+B -> -B3
+
+// sub area of "C"
+:role C1(C)
+C, self -> C1
+C -> -C1
+
+:role C2(C)
+C, self -> C2
+C -> -C2
+
+// sub-area X
+:role X(A1, A2)
+A1, A2, self -> X
+A1, A2 -> -X
+
+:role X1(X)
+X -> X1
+X -> -X1
+
+:role X2(X)
+X -> X2
+X -> -X2
+
+:role X3(X)
+X -> X3
+X -> -X3
+
+// sub-area Y
+:role Y(A3, A4, B1)
+A3, A4, B1, self -> Y
+A3, A4, B1 -> -Y
+
+:role YC1(Y, C1)
+Y, C1 -> YC1
+Y -> -YC1
+
+:role YC11(YC1)
+YC1 -> YC11
+YC1 -> -YC11
+
+:role YC12(YC1)
+YC1 -> YC12
+YC1 -> -YC12
+
+:role YC2(Y, C2)
+Y, C2 -> YC2
+Y, C2 -> -YC2
+
+:role YC21(YC2)
+YC2 -> YC21
+YC2 -> -YC21
+
+:role YC22(YC2)
+YC2 -> YC22
+YC2 -> -YC22
+
+// sub-area of B2
+:role B21(B2)
+B2 -> B21
+B2 -> -B21
+
+:role B22(B2)
+B2 -> B22
+B2 -> -B22
+
+// sub-area of B3
+:role B31(B3)
+B3 -> B31
+B3 -> -B31
+
+:role B32(B3)
+B3 -> B32
+B3 -> -B32
+
+// sub-area of C1
+:role C11(C1)
+C1 -> C11
+C1 -> -C11
+
+:role C12(C1)
+C1 -> C12
+C1 -> -C12
+
+// sub-area of C2
+:role C21(C2)
+C2 -> C21
+C2 -> -C21
+
+:role C22(C2)
+C2 -> C22
+C2 -> -C22
+
+:init root $root
+:admin-rule root

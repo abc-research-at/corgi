@@ -1,0 +1,15 @@
+// Testing root functionalities
+:contract DynRootOrgChart(dyn)
+
+:role root(A)
+
+:role A
+:role B(A)
+:role C(A)
+
+A -> root
+A -> -root
+A -> B
+A -> C
+
+:init A $a1
